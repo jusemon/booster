@@ -1,6 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Movement : MonoBehaviour
 {
@@ -10,6 +9,9 @@ public class Movement : MonoBehaviour
     [SerializeField] float mainThrust = 1000f;
     [SerializeField] float rotationThrust = 100f;
     [SerializeField] AudioClip audioClip;
+    [SerializeField] ParticleSystem mainBooster;
+    [SerializeField] ParticleSystem leftBooster;
+    [SerializeField] ParticleSystem rightBooster;
 
 
     // Start is called before the first frame update
@@ -30,15 +32,11 @@ public class Movement : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.Space))
         {
-            rigidbody1.AddRelativeForce(Vector3.up * Time.deltaTime * mainThrust);
-            if (!audioSource.isPlaying)
-            {
-                audioSource.PlayOneShot(audioClip);
-            }
+            StartThrusting();
         }
         else
         {
-            audioSource.Stop();
+            StopThrusting();
         }
     }
 
@@ -46,13 +44,60 @@ public class Movement : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D))
         {
-            ApplyRotation(Vector3.forward);
+            RotateToLeft();
         }
-
-        if (Input.GetKey(KeyCode.D) && !Input.GetKey(KeyCode.A))
+        else if (Input.GetKey(KeyCode.D) && !Input.GetKey(KeyCode.A))
         {
-            ApplyRotation(Vector3.back);
+            RotateToRight();
         }
+        else
+        {
+            StopRotate();
+        }
+    }
+
+    private void StartThrusting()
+    {
+        rigidbody1.AddRelativeForce(Vector3.up * Time.deltaTime * mainThrust);
+        if (!audioSource.isPlaying)
+        {
+            audioSource.PlayOneShot(audioClip);
+        }
+        if (!mainBooster.isPlaying)
+        {
+            mainBooster.Play();
+        }
+    }
+
+    private void StopThrusting()
+    {
+        mainBooster.Stop();
+        audioSource.Stop();
+    }
+
+    private void RotateToRight()
+    {
+        if (!leftBooster.isPlaying)
+        {
+            leftBooster.Play();
+        }
+        ApplyRotation(Vector3.back);
+
+    }
+
+    private void RotateToLeft()
+    {
+        if (!rightBooster.isPlaying)
+        {
+            rightBooster.Play();
+        }
+        ApplyRotation(Vector3.forward);
+    }
+
+    private void StopRotate()
+    {
+        leftBooster.Stop();
+        rightBooster.Stop();
     }
 
     private void ApplyRotation(Vector3 direction)
@@ -60,5 +105,13 @@ public class Movement : MonoBehaviour
         rigidbody1.freezeRotation = true;
         rigidbody1.transform.Rotate(direction * Time.deltaTime * rotationThrust);
         rigidbody1.freezeRotation = false;
+    }
+
+    private void OnDisable()
+    {
+        audioSource.Stop();
+        mainBooster.Stop();
+        leftBooster.Stop();
+        rightBooster.Stop();
     }
 }
