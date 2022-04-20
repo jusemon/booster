@@ -302,8 +302,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1630237086991283258}
   - component: {fileID: 2658439969674166483}
-  - component: {fileID: 2658439969674166485}
   - component: {fileID: 3637623097602137901}
+  - component: {fileID: 2658439969674166485}
+  - component: {fileID: 3637623097602137902}
   m_Layer: 0
   m_Name: Rocket
   m_TagString: Untagged
@@ -349,20 +350,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 56
   m_CollisionDetection: 0
---- !u!114 &2658439969674166485
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1630237086991283259}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 49943cfe64bfb6d43931953bf35a8a00, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mainThrust: 1000
-  rotationThrust: 100
 --- !u!82 &3637623097602137901
 AudioSource:
   m_ObjectHideFlags: 0
@@ -373,8 +360,8 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: c72437d9c2d715347ae9c0a0cc546e02, type: 3}
-  m_PlayOnAwake: 1
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 1
@@ -459,6 +446,37 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &2658439969674166485
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1630237086991283259}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49943cfe64bfb6d43931953bf35a8a00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainThrust: 1000
+  rotationThrust: 100
+  audioClip: {fileID: 8300000, guid: c72437d9c2d715347ae9c0a0cc546e02, type: 3}
+--- !u!114 &3637623097602137902
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1630237086991283259}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ad5e02e9a059ea4bafd17e3be1ed29c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  reloadDelay: 2
+  nextLevelDelay: 2
+  destroyClip: {fileID: 8300000, guid: 01e097d417a1309489ce33167a82d58d, type: 3}
+  successClip: {fileID: 8300000, guid: fa6181e28eaa878449adac87b535e663, type: 3}
 --- !u!1 &1630237087349224909
 GameObject:
   m_ObjectHideFlags: 0
