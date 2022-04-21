@@ -1,0 +1,11 @@
+{
+  "hosting": {
+    "site": "booster-e7df9",
+    "public": "Build",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+}
